@@ -2,15 +2,15 @@ import { FormEventHandler } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Auth.module.css";
 
-// type Props = {
-//   onSubmit: FormEventHandler<HTMLFormElement>;
-// };
-// const LogInForm = (props: Props) => {
-const LogInForm = () => {
-  // const { onSubmit } = props;
+type Props = {
+  onSubmit: FormEventHandler<HTMLFormElement>;
+};
+const LogInForm = (props: Props) => {
+  // const LogInForm = () => {
+  const { onSubmit } = props;
   return (
     // <form onSubmit={onSubmit} className={styles.Form}>
-    <form  className={styles.Form}>
+    <form className={styles.Form}>
       <div className={styles.Input}>
         <label htmlFor="email">Email</label>
         <input

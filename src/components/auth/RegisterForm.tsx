@@ -4,11 +4,11 @@ import styles from "./Auth.module.css";
 type Props = {
   onSubmit: FormEventHandler<HTMLFormElement>;
 };
-// const RegisterForm = (props: Props) => {
-//   const { onSubmit } = props;
-const RegisterForm = () => {
+const RegisterForm = (props: Props) => {
+  const { onSubmit } = props;
+  // const RegisterForm = () => {
   return (
-    <form className={styles.Form}>
+    <form onSubmit={onSubmit} className={styles.Form}>
       <div className={styles.Input}>
         <label htmlFor="name">Name</label>
         <input
