@@ -41,7 +41,7 @@ const Auth = () => {
                 throw new Error("Incorrect credential format!");
             }
             const params = {
-                method: "POST",
+                method: "POST", 
                 headers: {
                     "Content-Type": "application/json",
                 },
