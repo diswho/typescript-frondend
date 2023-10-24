@@ -40,7 +40,7 @@ const RegisterForm = () => {
         />
       </div>
       <button type="submit">Submit</button>
-      <Link className={styles.Link} to={"/login/access-token"}>
+      <Link className={styles.Link} to={"/user/login"}>
         Already have an account? Sign in
       </Link>
     </form>

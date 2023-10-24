@@ -5,6 +5,7 @@ import Resource from "./components/resource/Resource";
 import { useContext } from 'react';
 import AuthContext from "./store/auth/AuthContextProvider";
 import RegisterForm from './components/auth/RegisterForm';
+import Auth from './components/auth/Auth';
 
 function App() {
   const { authState } = useContext(AuthContext);
@@ -15,13 +16,13 @@ function App() {
         <Route
           path='/'
           element={
-            <Navigate to={authState.isLoggedIn ? location.pathname : "/login"} />
+            <Navigate to={authState.isLoggedIn ? location.pathname : "user/login"} />
           }
         />
         {!authState.isLoggedIn && (
           <Route path='user'>
-            <Route path='register' element={<RegisterForm />} />
-            <Route path='login' element={<LogInForm />} />
+            <Route path='register' element={<Auth />} />
+            <Route path='login' element={<Auth />} />
           </Route>
         )}
         {authState.isLoggedIn && (<Route path='/resource' element={<Resource />} />)}

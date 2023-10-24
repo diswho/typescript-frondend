@@ -56,7 +56,7 @@ export const AuthContextProvider = (props: AuthProvideProps) => {
 
     const globalLogOutDispatch = useCallback(() => {
         authDispatch({ type: AuthActionEnum.LOG_OUT, payload: null })
-        navigate("/login")
+        navigate("/login0")
     }, [navigate])
 
     // context values to be passed down to children
