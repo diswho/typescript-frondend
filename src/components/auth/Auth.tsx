@@ -2,14 +2,15 @@ import { useLocation } from "react-router-dom";
 import LogInForm from "./LogInForm";
 import RegisterForm from "./RegisterForm";
 import { FormEventHandler, useContext, useEffect, useState } from "react";
-import { AuthData } from "../hooks/api/apiData";
+import { AuthData } from "../../hooks/api/apiData";
 import AuthContext from "../../store/auth/AuthContextProvider";
 import { validateEmailFormat, validatePasswordLength } from "./validations";
-import { LoginService } from "../../client";
+import useApi from "../../hooks/api/useApi";
 
 const Auth = () => {
   const [authData, setAuthData] = useState<AuthData>();
   const { globalLogInDispatch } = useContext(AuthContext);
+  const { request, setError } = useApi()
 
   const location = useLocation();
   const currentPathArray = location.pathname.split("/");
@@ -42,9 +43,8 @@ const Auth = () => {
       }
       const params = {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded", },
+        // headers: { "Content-Type": "application/json", },
         body: JSON.stringify({
           email: userEmail,
           password: userPassword,
@@ -52,16 +52,13 @@ const Auth = () => {
         }),
       };
       const endpoint = `/user/${isLogin ? "login" : "register"}`;
-      // await request(endpoint, params, setAuthData);
+      await request(endpoint, params, setAuthData);
 
-      LoginService.loginAccessTokenPost({
-        username: userEmail?.toString() || "",
-        password: userPassword?.toString() || "",
-      });
       //   LoginService()
     } catch (error: any) {
-      // setError(error.message || error);
-      throw new Error(error.message || error);
+      console.error(error.message || error)
+      setError(error.message || error);
+      // throw new Error(error.message || error);
     }
   };
 
